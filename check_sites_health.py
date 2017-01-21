@@ -5,6 +5,7 @@ import requests
 
 
 DAYS_AMOUNT=30
+HTTP_OK_STATUS_CODE=200
 
 
 def load_urls4check(path):
@@ -12,12 +13,12 @@ def load_urls4check(path):
         return data_file.read()
 
 
-def make_urls_great_again(data):
-    return re.findall('.+', data)
+def urls_separate(urls_list):
+    return re.findall('.+', urls_list)
 
 
 def is_server_respond_with_200(url):
-    return requests.get(url).status_code == 200
+    return requests.get(url).status_code == HTTP_OK_STATUS_CODE
 
 
 def get_domain_expiration_date(url):
@@ -25,8 +26,8 @@ def get_domain_expiration_date(url):
 
 
 if __name__ == '__main__':
-    data = load_urls4check(input('Введите путь до текстового файла с URL адресами: '))
-    urls = make_urls_great_again(data)
+    raw_urls = load_urls4check(input('Введите путь до текстового файла с URL адресами: '))
+    urls = urls_separate(raw_urls)
     for url in urls:
         if is_server_respond_with_200(url):
             print('Доменное имя {} отвечает на запрос статусом HTTP 200'.format(url))
