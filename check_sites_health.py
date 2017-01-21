@@ -2,10 +2,18 @@ import whois
 import re
 import datetime
 import requests
+import argparse
 
 
 DAYS_AMOUNT=30
 HTTP_OK_STATUS_CODE=200
+
+
+def parse_path():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path_to_file',
+                        help='enter the filepath to your text file with urls')
+    return parser.parse_args()
 
 
 def load_urls4check(path):
@@ -26,7 +34,9 @@ def get_domain_expiration_date(url):
 
 
 if __name__ == '__main__':
-    raw_urls = load_urls4check(input('Введите путь до текстового файла с URL адресами: '))
+    parser = parse_path()
+    path_to_urls = parser.path_to_file
+    raw_urls = load_urls4check(path_to_urls)
     urls = urls_separate(raw_urls)
     for url in urls:
         if is_server_respond_with_200(url):
