@@ -1,7 +1,24 @@
-# Sites Monitoring Utility
+﻿# Поиск дубликатов
 
-[TODO. There will be project description]
+## Данный скрипт:
 
-# Project Goals
+1. Проверяет, отвечает ли сервер на запрос статусом HTTP 200 ("хорошо") или нет. 
+2. Проверяет, проплачено ли имя сайта на месяц вперед или нет.
 
-The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
+## Пример вывода программы:
+
+	Доменное имя https://google.com отвечает на запрос статусом HTTP 200
+	Доменное имя https://google.com проплачено более чем на месяц
+
+## Запуск:
+
+Введите в терминале:
+
+    python3.5 check_sites_health.py
+
+## Зависимости:
+
+Скрипт написан на языке Python 3, поэтому требует его наличия.
+Для его правильной работы нужно установить библиотеки requests, python-whois (см. requirements).
+
+    pip install -r requirements.txt
